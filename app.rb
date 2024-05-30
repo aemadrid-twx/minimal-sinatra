@@ -6,11 +6,11 @@ REVISION = ENV.fetch('SOURCE_COMMIT') { `git rev-parse --short HEAD`.chomp }
 ENV_PASSWORD = ENV.fetch('ENV_PASSWORD') { '1234' }
 
 get '' do
-  json status: 'ok'
+  json status: 'ok', path: ''
 end
 
 get '/' do
-  json status: 'ok'
+  json status: 'ok', path: '/'
 end
 
 get '/info' do
