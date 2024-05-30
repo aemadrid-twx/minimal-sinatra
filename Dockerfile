@@ -1,6 +1,8 @@
-FROM ruby:2.3.1-alpine
+FROM ruby:3.3.0-alpine
 
-RUN apk add --no-cache git
+RUN apk add --no-cache \
+    git \
+    curl
 
 COPY Gemfile /usr/src/app/Gemfile
 COPY Gemfile.lock /usr/src/app/Gemfile.lock
