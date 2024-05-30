@@ -5,6 +5,10 @@ require 'sinatra/json'
 REVISION = ENV.fetch('SOURCE_COMMIT') { `git rev-parse --short HEAD`.chomp }
 ENV_PASSWORD = ENV.fetch('ENV_PASSWORD') { '1234' }
 
+get '' do
+  json status: 'ok'
+end
+
 get '/' do
   json status: 'ok'
 end
@@ -20,12 +24,10 @@ end
 
 get '/env' do
   if params[:pass] == ENV_PASSWORD
-    envs = ENV.keys.sort.each_with_object({}) do |k, h|
-      h[k] = ENV[k]
-    end
+    envs = ENV.keys.sort.each_with_object({}) { |k, h| h[k] = ENV[k] }
   else
     envs = {}
-  ends
+  end
 
   json status: 'ok', env: envs
 end
