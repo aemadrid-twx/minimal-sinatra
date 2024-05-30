@@ -18,4 +18,4 @@ docker run -d -p 4567:4567 minimal-sinatra
 
 ## Changes
 
-* Added `/env` and `/status` endpoints
+* Added `/env` and `/status` endpoints.
