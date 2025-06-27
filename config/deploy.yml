@@ -21,8 +21,8 @@ registry:
     - KAMAL_REGISTRY_PASSWORD
 
 env:
-  secret:
-  clear:
+  secret: []
+  clear: {}
 
 aliases:
   console: app exec --interactive --reuse "bin/rails console"
