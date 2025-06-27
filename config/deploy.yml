@@ -12,7 +12,7 @@ proxy:
   forward_headers: true
   healthcheck:
     interval: 3
-    path: /up
+    path: /status
     timeout: 3
 
 registry:
