@@ -7,7 +7,12 @@ RUN apk add --no-cache \
 COPY Gemfile /usr/src/app/Gemfile
 COPY Gemfile.lock /usr/src/app/Gemfile.lock
 WORKDIR /usr/src/app
-RUN bundle install
+
+ENV BUNDLE_DEPLOYMENT="1" \
+    BUNDLE_PATH="/usr/local/bundle" \
+    BUNDLE_WITHOUT="development"
+RUN bundle install && \
+    rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
 
 COPY . /usr/src/app
 
