@@ -1,0 +1,35 @@
+service: minimal-sinatra
+image: aemadridtwx/minimal-sinatra-kamal
+
+servers:
+  web:
+    - h01.timeworxs.com
+
+proxy:
+  host: msk.h01.timeworxs.com
+  ssl: true
+  ssl_redirect: false
+  forward_headers: true
+  healthcheck:
+    interval: 3
+    path: /up
+    timeout: 3
+
+registry:
+  username: aemadridtwx
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+env:
+  secret:
+  clear:
+
+aliases:
+  console: app exec --interactive --reuse "bin/rails console"
+  shell: app exec --interactive --reuse "bash"
+  logs: app logs -f
+  dbc: app exec --interactive --reuse "bin/rails dbconsole"
+
+builder:
+  arch: amd64
+  local: true
